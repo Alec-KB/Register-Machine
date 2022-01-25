@@ -1,6 +1,8 @@
 #include <Register Machine.h>
 #include <stdexcept>
 
+
+// REGISTER MACHINE
 int RegisterMachine::returnResult(){
     return registers[0];
 }
@@ -38,6 +40,7 @@ int RegisterMachine::execute(){
 }
 
 
+// PROGRAM
 std::string Program::getLabel(){
     return currentInstruction;
 }
@@ -69,4 +72,33 @@ int Program::executeInstruction(unsigned int* registers){
         }
     }
     return 0;
+}
+
+
+// INSTRUCTION
+Instruction::Instruction(unsigned int iR, bool iadd, std::string ilabel1){
+    R = iR;
+    add = iadd;
+    label1 = ilabel1;
+}
+
+Instruction::Instruction(unsigned int iR, bool iadd, std::string ilabel1, std::string ilabel2){
+    R = iR;
+    add = iadd;
+    label1 = ilabel1;
+    label2 = ilabel2;
+}
+
+std::string Instruction::execute(unsigned int* registers){
+    if(add){
+        registers[R]++;
+        return label1;
+    } else{
+        if(registers[R] = 0){
+            return label2;
+        } else{
+            registers[R]--;
+            return label1;
+        }
+    }
 }

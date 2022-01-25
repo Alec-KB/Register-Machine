@@ -34,6 +34,8 @@ class Instruction{
     std::string label; 
     int R; // if <0, a halt instruction
     bool add; // if true add instruction, if false subtract
+    std::string label1;
+    std::string label2;
 
     public:
     Instruction(unsigned int R, bool add, std::string label1); // redundancy in add?
