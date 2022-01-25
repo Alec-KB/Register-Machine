@@ -1,4 +1,4 @@
-#include <Register Machine.h>
+#include "RegisterMachine.h"
 #include <stdexcept>
 
 
@@ -8,7 +8,7 @@ int RegisterMachine::returnResult(){
 }
 
 void RegisterMachine::printConfiguration(){
-    printf("(%s ", program->getLabel());
+    printf("(%s ", program->getLabel().c_str());
     for(int reg : registers){
         printf(",%d ", reg);
     }
@@ -31,14 +31,20 @@ void RegisterMachine::setRegister(unsigned int R, unsigned int val){
 
 int RegisterMachine::execute(){
     int a;
+    printConfiguration();
     while(!(a = program->executeInstruction(registers))){
         if(a==1){
             perror("Execution Failed!");
         }
+        printConfiguration();
+
     }
     return 0;
 }
 
+RegisterMachine::RegisterMachine(){
+    
+}
 
 // PROGRAM
 std::string Program::getLabel(){
@@ -74,6 +80,10 @@ int Program::executeInstruction(unsigned int* registers){
     return 0;
 }
 
+Program::Program(){
+
+}
+
 
 // INSTRUCTION
 Instruction::Instruction(unsigned int iR, bool iadd, std::string ilabel1){
@@ -94,7 +104,7 @@ std::string Instruction::execute(unsigned int* registers){
         registers[R]++;
         return label1;
     } else{
-        if(registers[R] = 0){
+        if(registers[R] == 0){
             return label2;
         } else{
             registers[R]--;
