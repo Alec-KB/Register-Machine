@@ -8,7 +8,7 @@ To produce a file that can be read in, create a plaintext file containing lines 
 
 Li : Rc- -> Lj , Lk (Subtraction instruction)\
 Li : Rc+ -> Lj      (Addition instruction)\
-Li : H              (Halting Instruction)\
+Li : H              (Halting Instruction)
 
 where: 
 i, j, and k, are labels of some form (can be alphanumeric, just no whitespace)
@@ -16,19 +16,19 @@ c is an integer
 
 Note that the first line will be the first instruction executed, after that it is up to your program flow
 
-For Subtraction, if Rc is 0 nothing happens, and machine jumps to instruction Lk, otherwise Rc is decremented and machine jumps to instruction Lj
-For Addition, Rc is incremented and machine jumps to instruction Lj
+For Subtraction, if Rc is 0 nothing happens, and machine jumps to instruction Lk, otherwise Rc is decremented and machine jumps to instruction Lj\
+For Addition, Rc is incremented and machine jumps to instruction Lj\
 For Halt, machine terminates.
 
 Example:
 
-L0 : R1- -> L1 , L2
-L1 : R0+ -> L0
-L2 : R2- -> L3 , L4
-L3 : R0+ -> L2
+L0 : R1- -> L1 , L2\
+L1 : R0+ -> L0\
+L2 : R2- -> L3 , L4\
+L3 : R0+ -> L2\
 L4 : H
 
-This program will add the contents of R1 and R2, leaving them in R0
+This program will add the contents of R1 and R2, leaving them in R0\
 (By convention R0 is the "output" register)
 
 # Registers
