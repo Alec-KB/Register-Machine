@@ -1,3 +1,3 @@
 # Register-Machine
 
-A Register Machine implementation i coded for my Computation Theory course
+A Register Machine implementation I coded for my Computation Theory course
