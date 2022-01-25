@@ -6,9 +6,9 @@ A Register Machine implementation I coded for my Computation Theory course
 The machine requires a program (obviously!), which can be read in from a file.
 To produce a file that can be read in, create a plaintext file containing lines of the form:
 
-Li : Rc- -> Lj , Lk (Subtraction instruction)\n
-Li : Rc+ -> Lj      (Addition instruction)
-Li : H              (Halting Instruction)
+Li : Rc- -> Lj , Lk (Subtraction instruction)\
+Li : Rc+ -> Lj      (Addition instruction)\
+Li : H              (Halting Instruction)\
 
 where: 
 i, j, and k, are labels of some form (can be alphanumeric, just no whitespace)
