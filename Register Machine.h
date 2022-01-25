@@ -18,7 +18,7 @@ class RegisterMachine{
 };
 
 class Program{
-    std::map<std::string, Instruction*> instructions;
+    std::map<std::string, Instruction*> instructions = {};
     std::string currentInstruction;
 
     public:
@@ -38,5 +38,5 @@ class Instruction{
     public:
     Instruction(unsigned int R, bool add, std::string label1); // redundancy in add?
     Instruction(unsigned int R, bool add, std::string label1, std::string label2); // redundancy in add?
-    std::string execute(int& registers); // acts on the registers then returns label of next instruction
+    std::string execute(unsigned int* registers); // acts on the registers then returns label of next instruction
 };

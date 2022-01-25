@@ -1,4 +1,5 @@
 #include <Register Machine.h>
+#include <stdexcept>
 
 int RegisterMachine::returnResult(){
     return registers[0];
@@ -34,5 +35,38 @@ int RegisterMachine::execute(){
         }
     }
     return 0;
+}
 
+
+std::string Program::getLabel(){
+    return currentInstruction;
+}
+
+int Program::addInstruction(std::string label, Instruction* instruction){
+    if(instructions.count(label) == 0){
+        instructions[label] = instruction;
+        return 0;
+    } else{
+        printf("Instruction %s already exists!", label);
+        return 1;
+    }
+}
+
+void Program::setStartLabel(std::string label){
+    currentInstruction = label;
+}
+
+int Program::executeInstruction(unsigned int* registers){
+    if(currentInstruction.empty()){
+        perror("No starting instruction set!");
+        return 1;
+    } else{
+        try{
+            currentInstruction = instructions.at(currentInstruction)->execute(registers);
+        } catch(std::out_of_range){
+            printf("Instruction %s does not exist", currentInstruction);
+            return 2;
+        }
+    }
+    return 0;
 }
