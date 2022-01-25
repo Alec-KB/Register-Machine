@@ -1,18 +1,19 @@
 #include "RegisterMachine.h"
 
-int main(){
+int main(int argc, char* argv[]){
+    if (argc != 3)
+    {
+        printf("Format is RegisterMachine <program file> <register file>");
+    }
+    
+
     RegisterMachine* r = new RegisterMachine();
     Program* p = new Program();
-    p->addInstruction("0", new Instruction(1,false,"1","2"));
-    p->addInstruction("1", new Instruction(0,true,"0"));
-    p->addInstruction("2", new Instruction(2,false,"3","4"));
-    p->addInstruction("3", new Instruction(0,true,"2"));
-    p->addInstruction("4", new Instruction(-1,true,"0"));
-    p->setStartLabel("0");
+
+    p->parseProgram(argv[1]);
+    r->setRegisters(argv[2]);
     r->inputProgram(p);
-    r->setRegister(1,1);
-    r->setRegister(2,2);
     r->execute();
-    printf("%d", r->returnResult());
+    printf("Result is %d", r->returnResult());
     return 0;
 }

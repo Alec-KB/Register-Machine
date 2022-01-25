@@ -1,5 +1,6 @@
 #include <string>
 #include <map>
+#include <list>
 #define regLen 10
 
 class Instruction{
@@ -18,12 +19,15 @@ class Instruction{
 class Program{
     std::map<std::string, Instruction*> instructions = {};
     std::string currentInstruction;
+    static const int tokenise(std::string filename, std::list<std::string>* output);
 
     public:
     std::string getLabel();
     int addInstruction(std::string Label, Instruction* instruction);
     void setStartLabel(std::string);
     int executeInstruction(unsigned int* registers);
+    int parseProgram(std::string filename);
+
     Program();
 
 };
@@ -36,10 +40,11 @@ class RegisterMachine{
     public:
     void inputProgram(Program* inputProgram);
     void resetRegisters();
-    void setRegister(unsigned int R, unsigned int val);
+    int setRegisters(std::string filename);
     int execute();
     int returnResult();
     void printConfiguration();
     RegisterMachine();
 };
+
 
